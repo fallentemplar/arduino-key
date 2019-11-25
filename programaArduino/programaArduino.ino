@@ -123,7 +123,6 @@ bool Recorrido(String llave)
   while (i < llave.length())
   {
     pos_recorrido = i;
-    //for (int j = 1; j < nodo[con].length(); j++)
     int a = sizeof(nodo[con]);
     for (int j = 1; j < a / 2; j++)
     {
