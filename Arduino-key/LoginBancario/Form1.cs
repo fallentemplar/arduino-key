@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,7 +17,9 @@ namespace LoginBancario
 {
     public partial class Form1 : Form
     {
+        Stopwatch cronometro;
         SerialPort puertoDestino;
+        Thread thread;
         public Form1()
         {
             InitializeComponent();
@@ -23,6 +27,7 @@ namespace LoginBancario
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            cronometro = new Stopwatch();
             using(var ventanaLogin = new PantallaCredenciales())
             {
                 var credenciales = ventanaLogin.ShowDialog();
@@ -31,12 +36,34 @@ namespace LoginBancario
                 using (MD5 md5Hash = MD5.Create())
                 {
                     string hash = GetMd5Hash(md5Hash, usuario+contrasena).ToUpper();
-                    MessageBox.Show(hash);
                     var puertoSerial = EscanearSerial();
+                    cronometro.Start();
+                    thread = new Thread(new ThreadStart(TiempoEspera));
+                    thread.Start();
+                    
                     puertoSerial.Write(hash);
                 }
             }
         }
+
+        private void TiempoEspera()
+        {
+            do
+            {
+                if (cronometro.ElapsedMilliseconds / 1000 >= 7)
+                {
+                    cronometro.Stop();
+                    MessageBox.Show("Tiempo de espera agotado");
+                    break;
+                }
+                else
+                    Thread.Sleep(1000);
+            } while (true);
+            Application.Exit();
+            thread.Abort();
+            
+        }
+
 
         static string GetMd5Hash(MD5 md5Hash, string input)
         {
@@ -70,8 +97,10 @@ namespace LoginBancario
         private void ComprobarCredenciales(string credenciales)
         {
             if (credenciales.StartsWith("Y"))
+            {
+                MessageBox.Show("Bienvenido");
                 this.BeginInvoke(new ObtenerDatosTablaEvent(ObtenerDatosTabla));
-            //ObtenerDatosTabla();
+            }
             else
             {
                 MessageBox.Show("Incorrecto");
