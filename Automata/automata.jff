@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--Created with JFLAP 7.1.--><structure>
+	<type>fa</type>
+	<automaton>
+		<!--The list of states.-->
+		<state id="0" name="q0">
+			<x>59.0</x>
+			<y>256.0</y>
+		</state>
+		<state id="1" name="q1">
+			<x>253.0</x>
+			<y>109.0</y>
+			<label>A</label>
+		</state>
+		<state id="2" name="q2">
+			<x>250.0</x>
+			<y>210.0</y>
+			<label>B</label>
+		</state>
+		<state id="3" name="q3">
+			<x>241.0</x>
+			<y>323.0</y>
+			<label>C</label>
+		</state>
+		<state id="4" name="q4">
+			<x>238.0</x>
+			<y>439.0</y>
+			<label>D</label>
+		</state>
+		<state id="5" name="q5">
+			<x>366.0</x>
+			<y>113.0</y>
+			<label>E</label>
+		</state>
+		<state id="6" name="q6">
+			<x>356.0</x>
+			<y>224.0</y>
+			<label>F</label>
+		</state>
+		<state id="7" name="q7">
+			<x>351.0</x>
+			<y>337.0</y>
+			<label>G</label>
+		</state>
+		<state id="8" name="q8">
+			<x>354.0</x>
+			<y>447.0</y>
+			<label>H</label>
+		</state>
+		<state id="9" name="q9">
+			<x>474.0</x>
+			<y>115.0</y>
+			<label>I</label>
+		</state>
+		<state id="10" name="q10">
+			<x>470.0</x>
+			<y>226.0</y>
+			<label>J</label>
+		</state>
+		<state id="11" name="q11">
+			<x>465.0</x>
+			<y>333.0</y>
+			<label>K</label>
+		</state>
+		<state id="12" name="q12">
+			<x>459.0</x>
+			<y>454.0</y>
+			<label>L</label>
+		</state>
+		<state id="13" name="q13">
+			<x>603.0</x>
+			<y>117.0</y>
+			<label>M</label>
+		</state>
+		<state id="14" name="q14">
+			<x>601.0</x>
+			<y>227.0</y>
+			<label>N</label>
+		</state>
+		<state id="15" name="q15">
+			<x>598.0</x>
+			<y>327.0</y>
+			<label>Ñ</label>
+		</state>
+		<state id="16" name="q16">
+			<x>605.0</x>
+			<y>455.0</y>
+			<label>O</label>
+		</state>
+		<state id="17" name="q17">
+			<x>707.0</x>
+			<y>178.0</y>
+			<label>P</label>
+		</state>
+		<state id="18" name="q18">
+			<x>708.0</x>
+			<y>284.0</y>
+			<label>Q</label>
+		</state>
+		<state id="19" name="q19">
+			<x>716.0</x>
+			<y>398.0</y>
+			<label>R</label>
+		</state>
+		<state id="20" name="q20">
+			<x>800.0</x>
+			<y>117.0</y>
+			<label>S</label>
+		</state>
+		<state id="21" name="q21">
+			<x>802.0</x>
+			<y>235.0</y>
+			<label>T</label>
+		</state>
+		<state id="22" name="q22">
+			<x>798.0</x>
+			<y>352.0</y>
+			<label>U</label>
+		</state>
+		<state id="23" name="q23">
+			<x>799.0</x>
+			<y>465.0</y>
+			<label>V</label>
+		</state>
+		<state id="24" name="q24">
+			<x>903.0</x>
+			<y>117.0</y>
+			<label>W</label>
+		</state>
+		<state id="25" name="q25">
+			<x>904.0</x>
+			<y>236.0</y>
+			<label>X</label>
+		</state>
+		<state id="26" name="q26">
+			<x>910.0</x>
+			<y>358.0</y>
+			<label>Y</label>
+		</state>
+		<state id="27" name="q27">
+			<x>908.0</x>
+			<y>466.0</y>
+			<label>Z</label>
+		</state>
+		<state id="28" name="q28">
+			<x>712.0</x>
+			<y>99.0</y>
+			<label>0</label>
+		</state>
+		<state id="29" name="q29">
+			<x>711.0</x>
+			<y>496.0</y>
+			<label>1</label>
+		</state>
+		<state id="30" name="q30">
+			<x>315.0</x>
+			<y>41.0</y>
+			<label>2</label>
+		</state>
+		<state id="31" name="q31">
+			<x>551.0</x>
+			<y>41.0</y>
+			<label>3</label>
+		</state>
+		<state id="32" name="q32">
+			<x>862.0</x>
+			<y>52.0</y>
+			<label>4</label>
+		</state>
+		<state id="33" name="q33">
+			<x>1005.0</x>
+			<y>53.0</y>
+			<label>5</label>
+		</state>
+		<state id="34" name="q34">
+			<x>1279.0</x>
+			<y>419.0</y>
+			<label>6</label>
+		</state>
+		<state id="35" name="q35">
+			<x>1147.0</x>
+			<y>437.0</y>
+			<label>7</label>
+		</state>
+		<state id="36" name="q36">
+			<x>1211.0</x>
+			<y>53.0</y>
+			<label>8</label>
+		</state>
+		<state id="37" name="q37">
+			<x>1263.0</x>
+			<y>163.0</y>
+			<label>9</label>
+		</state>
+		<state id="38" name="q38">
+			<x>1210.0</x>
+			<y>296.0</y>
+			<final/>
+		</state>
+		<!--The list of transitions.-->
+		<transition>
+			<from>0</from>
+			<to>1</to>
+			<read>A</read>
+		</transition>
+	</automaton>
+</structure>
