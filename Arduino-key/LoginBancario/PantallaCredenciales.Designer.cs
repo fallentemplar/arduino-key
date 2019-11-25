@@ -87,8 +87,10 @@
             this.Controls.Add(this.etiquetaUsuario);
             this.Controls.Add(this.campoContrasena);
             this.Controls.Add(this.campoUsuario);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "PantallaCredenciales";
-            this.Text = "PantallaCredenciales";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Iniciar sesión";
             this.ResumeLayout(false);
             this.PerformLayout();
 

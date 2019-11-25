@@ -10,14 +10,18 @@ void setup()
 void loop()
 {
   while(Serial.available()){
-    //read from serial port
     SerialInput = Serial.readString();
-    //verify incomingOption
-    if(SerialInput=="alexisseguridad123"){
+    
+    if(SerialInput=="D959C03BF6CC65498B0C023E7C734144"){
       digitalWrite(LEDPin, HIGH);
+      Serial.println("Y");
     }
     else if(SerialInput=="karlaseguridad123"){
       digitalWrite(LEDPin, HIGH);
+      Serial.println("Y");
+    }else{
+    
+      Serial.println("N");
     }
   }
 }

@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,6 +15,7 @@ namespace LoginBancario
 {
     public partial class Form1 : Form
     {
+        SerialPort puertoDestino;
         public Form1()
         {
             InitializeComponent();
@@ -26,24 +28,66 @@ namespace LoginBancario
                 var credenciales = ventanaLogin.ShowDialog();
                 string usuario = ventanaLogin.Usuario;
                 string contrasena = ventanaLogin.Contrasena;
-                if ((usuario + contrasena).Equals("alexisseguridad123"))
-                    ObtenerDatosTabla();
-                else
+                using (MD5 md5Hash = MD5.Create())
                 {
-                    MessageBox.Show("Incorrecto");
-                    Application.Exit();
-                }                    
+                    string hash = GetMd5Hash(md5Hash, usuario+contrasena).ToUpper();
+                    MessageBox.Show(hash);
+                    var puertoSerial = EscanearSerial();
+                    puertoSerial.Write(hash);
+                }
+            }
+        }
+
+        static string GetMd5Hash(MD5 md5Hash, string input)
+        {
+
+            // Convert the input string to a byte array and compute the hash.
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+            // Create a new Stringbuilder to collect the bytes
+            // and create a string.
+            StringBuilder sBuilder = new StringBuilder();
+
+            // Loop through each byte of the hashed data 
+            // and format each one as a hexadecimal string.
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+
+            // Return the hexadecimal string.
+            return sBuilder.ToString();
+        }
+
+        private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            string line = puertoDestino.ReadLine();
+            Console.WriteLine("-------------------\n[" + line + "]\n-------------------\n");
+            puertoDestino.Close();
+            ComprobarCredenciales(line);
+        }
+
+        private void ComprobarCredenciales(string credenciales)
+        {
+            if (credenciales.StartsWith("Y"))
+                this.BeginInvoke(new ObtenerDatosTablaEvent(ObtenerDatosTabla));
+            //ObtenerDatosTabla();
+            else
+            {
+                MessageBox.Show("Incorrecto");
+                Application.Exit();
             }
         }
 
         private SerialPort EscanearSerial()
         {
             var puertosSerialesDisponibles = SerialPort.GetPortNames();
-            SerialPort puertoDestino;
+            
             
             foreach (var puerto in puertosSerialesDisponibles)
             {
                 puertoDestino = new SerialPort(puerto);
+                puertoDestino.DataReceived += serialPort1_DataReceived;
                 puertoDestino.BaudRate = 9600;
                 puertoDestino.Open();
                 return puertoDestino;
@@ -51,6 +95,7 @@ namespace LoginBancario
             return null;
         }
 
+        private delegate void ObtenerDatosTablaEvent();
         private void ObtenerDatosTabla()
         {
             MySqlConnection mysqlCon = new MySqlConnection("server=localhost;user id=root;password=oracle;database=Banco");
